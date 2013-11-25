@@ -1,6 +1,14 @@
-<html>
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
+	<link rel="stylesheet" type="text/css" href="{% static 'notes/style.css' %}" />
 </head>
+
 <body>
 	{% if list_of_notes %}
 		<h1>List of notes:</h1>
