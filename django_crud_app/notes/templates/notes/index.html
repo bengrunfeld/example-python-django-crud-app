@@ -1,0 +1,14 @@
+<html>
+<head>
+</head>
+<body>
+	{% if list_of_notes %}
+		<h1>List of notes:</h1>
+		{% for note in list_of_notes %}
+		<p>{{ note.title }}</p>
+		{% endfor %}
+	{% else %}
+		<h1>No data returned</h1>
+	{% endif %}
+</body>
+</html>

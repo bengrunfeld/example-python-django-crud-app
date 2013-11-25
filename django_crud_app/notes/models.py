@@ -6,5 +6,5 @@ class Note(models.Model):
 	first_published_date = models.DateTimeField('Date Published')
 	last_update_date = models.DateTimeField('Last Update')
 
-	def __unicode__(self):  # Python 3: def __str__(self):
-		return self.content
+	def __unicode__(self):
+		return self.title
