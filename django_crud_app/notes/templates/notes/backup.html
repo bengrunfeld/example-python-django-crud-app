@@ -1,0 +1,12 @@
+{% block empty %}
+    {% if list_of_notes %}
+        
+
+        <h1>List of notes:</h1>
+        {% for note in list_of_notes %}
+        <p>{{ note.title }}</p>
+        {% endfor %}
+    {% else %}
+        <h3>Error: No data received at index.html. Please refresh page.</h3>
+    {% endif %}
+{% endblock empty %}

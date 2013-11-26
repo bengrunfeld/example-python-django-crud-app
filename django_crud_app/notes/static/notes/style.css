@@ -1,6 +1,139 @@
-/* Stylesheet */
+/* Styles */ 
 
 html, body {
 	padding:0;
 	margin:0;
+}
+
+/* Main Containers */
+
+
+.main_container {
+	width:1280px;
+	min-height:800px;
+	height:100%;
+	background:#d3d3d3;
+}
+
+
+.notes_list {
+	width:250px;
+	min-height:800px;
+	height:100%;
+	background:#6e6e6e;
+	float:left;
+	position:relative;
+}
+
+.note_text {
+	float:left;
+	margin-left:25px;
+	width:865px;
+	min-height:800px;
+}
+
+/* Note List */
+
+
+.note_selector {
+	width:230px;
+	height:100px;
+	padding:20px 10px 0 10px;
+}
+
+.note_selector h2 {
+	margin:0 0 10px 0;
+	color:#ffffff;
+}
+
+.note_selector p {
+	font-size:12px;
+	color:#ffffff;
+}
+
+.note_selector.selected {
+	background:#d3d3d3;
+}
+
+.note_selector.selected h2 {
+	color:#292929;
+}
+
+.note_selector.selected p {
+	color:#292929;
+}
+
+
+/* Note List Navbar */
+
+.nav_buttons {
+	position:absolute;
+	bottom:50px;
+	left:20px;
+	background:#3d3d3d;
+	border:solid 1px #b9b9b9;
+	width:150px;
+}
+
+.nav_buttons a {
+	text-align: center;
+	border-right:solid 1px #b9b9b9;
+	font-size:41px;
+	color:#b9b9b9;
+	display:block;
+	float:left;
+	padding:5px 12px 10px 12px !important;
+	line-height:28px;
+	cursor:pointer;
+
+}
+
+.nav_buttons a:last-of-type {
+	border-right:none;
+}
+
+/* Note Text */
+
+.note_text h1 {
+	font-size:22px;
+	margin:20px 0 30px 0;
+	color:#292929;
+	font-weight:400;
+}
+
+.note_text p {
+	font-size:16px;
+	margin-bottom:15px;
+	font-weight:300;
+	line-height:20px;
+}
+
+
+
+/* Typography */
+h1, h2, h3, h4, h5, h6, p, a {
+	font-family:helvetica;
+}
+
+h1 {
+	font-size:22px;
+	margin:0;
+	padding:0;
+}
+
+h2 {
+	font-size:16px;
+	line-height:22px;
+	font-weight:300;
+	padding:0;
+}
+
+p {
+	margin:0;
+	padding:0;
+}
+
+a {
+	text-decoration:none;
+	border:none;
 }
