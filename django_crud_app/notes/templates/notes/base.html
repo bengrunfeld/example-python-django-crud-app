@@ -22,12 +22,19 @@
 
         <div class="main_container">
             <section class="notes_list">
-                
+                {% block empty %}
+                    {% if list_of_notes %}
+                        {% for note in list_of_notes %}
+                            <a href="{% url 'notes:read' note_id=note.id %}"><div class="note_selector {# if selected #}">
+                                <h2>{{ note.title }}</h2>
+                                <p>Last edited: {{ note.last_update_date }}</p>
+                            </div></a>                        
+                        {% endfor %}
+                    {% else %}
+                        <h2>Error: No data received at index.html. Please refresh page.</h2>
+                    {% endif %}
+                {% endblock empty %}
 
-                <a><div class="note_selector">
-                    <h2>Fourth Note: Black Strap Molasses is rather tasty</h2>
-                    <p>Last edited: 3/20/1980</p>
-                </div></a>
 
                 <div class="nav_buttons">
                     <a>+</a>

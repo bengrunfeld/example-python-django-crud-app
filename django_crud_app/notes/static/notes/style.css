@@ -84,8 +84,6 @@ html, body {
 	float:left;
 	padding:5px 12px 10px 12px !important;
 	line-height:28px;
-	cursor:pointer;
-
 }
 
 .nav_buttons a:last-of-type {
@@ -136,4 +134,5 @@ p {
 a {
 	text-decoration:none;
 	border:none;
+	cursor:pointer;
 }
