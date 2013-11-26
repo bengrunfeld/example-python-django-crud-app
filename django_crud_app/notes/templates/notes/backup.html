@@ -1,7 +1,5 @@
 {% block empty %}
     {% if list_of_notes %}
-        
-
         <h1>List of notes:</h1>
         {% for note in list_of_notes %}
         <p>{{ note.title }}</p>
@@ -10,3 +8,86 @@
         <h3>Error: No data received at index.html. Please refresh page.</h3>
     {% endif %}
 {% endblock empty %}
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'notes/style.css' %}" />
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+
+        <div class="main_container">
+            <section class="notes_list">
+                <a><div class="note_selector">
+                    <h2>Fourth Note: Black Strap Molasses is rather tasty</h2>
+                    <p>Last edited: 3/20/1980</p>
+                </div></a>
+                <a><div class="note_selector selected">
+                    <h2>Third Note: Stanley Kubrik is a lower form of deity</h2>
+                    <p>Last edited: 3/20/1980</p>
+                </div></a>
+                <a><div class="note_selector">
+                    <h2>Second Note: Never eat a sausage. It will do you no good</h2>
+                    <p>Last edited: 3/20/1980</p>
+                </div></a>
+                <a><div class="note_selector">
+                    <h2>First Note: A calm yet spacey afternoon cooks in secret</h2>
+                    <p>Last edited: 3/20/1980</p>
+                </div></a>
+
+                <div class="nav_buttons">
+                    <a>+</a>
+                    <a>–</a>
+                    <a><img src="{% static 'notes/savedisk.png' %}" alt="Save" title="save"></a>
+                </div>
+
+            </section> <!-- notes_list -->
+
+            <section class="note_text">
+                <h1>Third Note: Stanley Kubrik is a lower form of deity</h1>
+                
+                <p>Lorem ipsum dolor sit amet, ei dolorum albucius signiferumque vis, pri in audire detraxit efficiantur, dico dicta democritum nam in. Usu id audire officiis evertitur, qui eirmod vocent probatus ut. Sed id quidam periculis neglegentur, ne vix iriure deseruisse, at per appareat ocurreret. No vis summo placerat. Te iusto molestie sea, deseruisse quaerendum est ut. Ad tantas officiis mea.</p>
+
+                <p>Et graeci legendos concludaturque pri. In cum sint causae mnesarchum, quodsi probatus eu sit. No elit conceptam mea, an pro prompta euismod, an libris luptatum eam. Accusam neglegentur et sit, quo ea simul dissentias. Labore assentior ius te, his eu solum nostro, at nec praesent disputando. Utinam postulant suscipiantur vel ex.</p>
+
+                <p>Cu sea ridens oblique imperdiet. Eu duo brute volumus. Ei duo salutatus percipitur. Vidit laudem civibus ei per, appetere corrumpit ex mei, lorem audiam sapientem usu an. Enim civibus ex has, an dolorum tibique constituam per, mea ex clita quando. Ludus blandit ad has, te saperet admodum detraxit mel. Quem euismod signiferumque est ne, solum definitiones per no, ad atomorum appellantur sed.</p>
+
+                <p>Nominavi delectus iudicabit mel id, id eum perfecto erroribus. Sea nominati adipiscing sadipscing cu. Nam sale oblique numquam ut. Ius ut invenire rationibus, primis inciderint no nec. Constituto disputationi est te, nam verterem sententiae definiebas ea, vim tantas audire disputando ut. In eum utinam iudicabit complectitur, ne ponderum luptatum interesset sea.</p>
+
+                <p>Quod diam diceret sea ex, dico summo definitionem in mei. Cu sed sumo latine, no elitr nihil labores nec. Usu ne nonumy prodesset, ex per agam inani suscipit. Vel saepe deseruisse ne. Qui in nihil iuvaret gloriatur, eum libris debitis ut. An oblique facilisis nec, per an putant debitis dissentiet. Id atqui dolor nam, sit ornatus tibique blandit et, eam eu tota tacimates conclusionemque.</p>
+            </section>
+
+            <div style="clear:both;"></div>
+
+        </div> <!-- main_container -->
+
+
+
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <script>
+            //Google Analytics Code Here
+        </script>
+    </body>
+</html>
