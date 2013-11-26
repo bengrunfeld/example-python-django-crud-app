@@ -7,4 +7,5 @@ class Note(models.Model):
 	last_update_date = models.DateTimeField('Last Update')
 
 	def __unicode__(self):
+		"""Returns a pretty output when someone calls Note.objects.all()"""
 		return self.title
