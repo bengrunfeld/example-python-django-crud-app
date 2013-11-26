@@ -9,7 +9,8 @@ def index(request):
 		template = 'notes/empty.html'
 	else:
 		template = 'notes/base.html'
-	context = {'list_of_notes': list_of_notes}
+	target = list_of_notes[0]
+	context = {'list_of_notes': list_of_notes, 'target': target}
 	return render(request, template, context)
 
 def create(request, note_id):
@@ -18,7 +19,14 @@ def create(request, note_id):
 
 def read(request, note_id):
 	"""Reads a specific note from the Database"""
-	pass
+	list_of_notes = Note.objects.all().order_by('-last_update_date')
+	if not list_of_notes:
+		template = 'notes/empty.html'
+	else:
+		template = 'notes/base.html'
+	target = Note.objects.get(id=note_id)
+	context = {'list_of_notes': list_of_notes, 'target': target}
+	return render(request, template, context)
 
 def update(request, note_id):
 	"""Updates a specific note in the Database"""
