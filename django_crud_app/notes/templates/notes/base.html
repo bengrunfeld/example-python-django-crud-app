@@ -29,21 +29,29 @@
                                 <p>Last edited: {{ note.last_update_date }}</p>
                             </div></a>                        
                         {% endfor %}
-                    {% else %}
-                        <h2>Error: No data received at index.html. Please refresh page.</h2>
                     {% endif %}
 
                 <div class="nav_buttons">
-                    <a>+</a>
-                    <a>–</a>
+                    <a href="{# url 'notes:create' #}">+</a>
+                    <a href="{% if not deleted %}{% url 'notes:delete' note_id=target.id %}{% else %}javascript:;{% endif %}">–</a>
                     <a><img src="{% static 'notes/savedisk.png' %}" alt="Save" title="save"></a>
                 </div>
 
             </section> <!-- notes_list -->
 
             <section class="note_text">
-                    <h1>{{ target.title }}</h1>
-                    <p>{{ target.content|escape|linebreaks }}</p>
+                {% if list_of_notes %}
+                    {% if deleted %}
+                        <h1>Note: {{ tempid }} was deleted | {{ deleted }}</h1>
+                        <p>Please enter a note</p>
+                    {% else %}
+                        <h1>{{ target.title }}</h1>
+                        <p>{{ target.content|escape|linebreaks }}</p>
+                    {% endif %}
+                {% else %}
+                    <h1>Please enter a title</h1>
+                    <p>Please enter a note</p>
+                {% endif %}
             </section>
                 {% endblock empty %}
             <div style="clear:both;"></div>
