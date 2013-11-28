@@ -91,3 +91,96 @@
         </script>
     </body>
 </html>
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'notes/style.css' %}" />
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+
+        <div class="main_container">
+            {% if not deleted %}
+                <form action="/notes/" method="post">{% csrf_token %}
+            {% else %}
+                <form method="post" action="javascript:;">
+            {% endif %}
+
+            <section class="notes_list">
+                {% block empty %}
+                    {% if list_of_notes %}
+                        {% if newspace %}
+                            <a href="javascript:;">
+                                <div class="note_selector selected">
+                                    <h2>New note</h2>
+                                    <p>To be published now</p>
+                                </div>
+                            </a>
+                        {% endif %}
+                        {% for note in list_of_notes %}
+                            <a href="{% url 'notes:read' note_id=note.id %}">
+                                <div class="note_selector {% if note.id == target.id %} selected {% endif %}">
+                                <h2>{{ note.title }}</h2>
+                                <p>Last edited: {{ note.last_update_date }}</p>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                    
+                <div class="nav_buttons">
+                    <input type="submit" value="+">
+                    <a href="{% if not deleted %}{% url 'notes:delete' note_id=target.id %}{% else %}javascript:;{% endif %}">–</a>
+                    <a href="{# url 'notes:update' note_id=target.id #}"><img src="{% static 'notes/savedisk.png' %}" alt="Save" title="save"></a>
+                </div>
+
+            </section> <!-- notes_list -->
+
+            <section class="note_text">
+                {% if list_of_notes %}
+                    {% if newspace %}
+                        <a href="javascript:;">
+                            <div class="note_selector selected">
+                                <h2>New note</h2>
+                                <p>To be published now</p>
+                            </div>
+                        </a>
+                    {% else %}
+                        {% if deleted %}
+                            <h1>Note: {{ tempid }} was deleted</h1>
+                            <p>Please enter a note</p>
+                        {% else %}
+                                <input class="noteTitle" type="text" name="note_title" value="{{ target.title }}">
+                                <textarea class="noteText" rows="30" cols="70">{{ target.content }}</textarea>
+                            </form>
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    <h1>Please enter a title</h1>
+                    <p>Please enter a note</p>
+                {% endif %}
+            </section>
+                {% endblock empty %}
+            <div style="clear:both;"></div>
+
+        </div> <!-- main_container -->
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="{% static 'notes/main.js' %}"></script>
+    </body>
+</html>
+

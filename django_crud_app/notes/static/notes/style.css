@@ -92,18 +92,31 @@ html, body {
 
 /* Note Text */
 
-.note_text h1 {
+.note_text h1, .note_text input {
+	width:800px;
 	font-size:22px;
 	margin:20px 0 30px 0;
 	color:#292929;
 	font-weight:400;
+	display:block;
+	background:#d3d3d3;
+	border:none;
 }
 
-.note_text p {
+.note_text p, .note_text textarea {
 	font-size:16px;
 	margin-bottom:15px;
 	font-weight:300;
 	line-height:20px;
+	display:block;
+	background:#d3d3d3;
+	border:none;
+}
+
+.note_text input:focus, .note_text textarea:focus  {
+	border:none !important;
+	outline:none !important;
+	box-shadow:none !important;
 }
 
 

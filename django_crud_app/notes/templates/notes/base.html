@@ -20,33 +20,68 @@
 
 
         <div class="main_container">
+            {% if not deleted %}
+                <form action="/notes/" method="post">{% csrf_token %}
+            {% else %}
+                <form method="post" action="javascript:;">
+            {% endif %}
+
             <section class="notes_list">
                 {% block empty %}
                     {% if list_of_notes %}
+                        {% if newspace %}
+                            <a href="javascript:;">
+                                <div class="note_selector selected">
+                                    <h2>New note</h2>
+                                    <p>To be published now</p>
+                                </div>
+                            </a>
+                        {% endif %}
                         {% for note in list_of_notes %}
-                            <a href="{% url 'notes:read' note_id=note.id %}"><div class="note_selector {% if note.id == target.id %} selected {% endif %}">
+                            <a href="{% url 'notes:read' note_id=note.id %}">
+                                <div class="note_selector {% if note.id == target.id %} selected {% endif %}">
                                 <h2>{{ note.title }}</h2>
                                 <p>Last edited: {{ note.last_update_date }}</p>
-                            </div></a>                        
+                                </div>
+                            </a>
                         {% endfor %}
                     {% endif %}
-
+                    
                 <div class="nav_buttons">
-                    <a href="{# url 'notes:create' #}">+</a>
+                    <input type="submit" value="+">
                     <a href="{% if not deleted %}{% url 'notes:delete' note_id=target.id %}{% else %}javascript:;{% endif %}">–</a>
-                    <a><img src="{% static 'notes/savedisk.png' %}" alt="Save" title="save"></a>
+                    <a href="{# url 'notes:update' note_id=target.id #}"><img src="{% static 'notes/savedisk.png' %}" alt="Save" title="save"></a>
                 </div>
 
             </section> <!-- notes_list -->
 
             <section class="note_text">
                 {% if list_of_notes %}
-                    {% if deleted %}
-                        <h1>Note: {{ tempid }} was deleted | {{ deleted }}</h1>
-                        <p>Please enter a note</p>
+                    {% if newspace %}
+                        <a href="javascript:;">
+                            <div class="note_selector selected">
+                                <h2>New note</h2>
+                                <p>To be published now</p>
+                            </div>
+                        </a>
                     {% else %}
-                        <h1>{{ target.title }}</h1>
-                        <p>{{ target.content|escape|linebreaks }}</p>
+                        {% if deleted %}
+                            <h1>Note: {{ tempid }} was deleted</h1>
+                            <p>Please enter a note</p>
+                        {% else %}
+                            {{ form.non_field_errors }}
+                            <div class="note_title">
+                                {{ form.title.errors }}
+                                <label for="id_title"></label>
+                                {{ form.title }}
+                            </div>
+                            <div class="note_content">
+                                {{ form.content.errors }}
+                                <label for="id_content"></label>
+                                {{ form.content }}
+                            </div>
+                           </form>
+                        {% endif %}
                     {% endif %}
                 {% else %}
                     <h1>Please enter a title</h1>
@@ -58,9 +93,7 @@
 
         </div> <!-- main_container -->
 
-
-        <script>
-            //Google Analytics Code Here
-        </script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="{% static 'notes/main.js' %}"></script>
     </body>
 </html>
