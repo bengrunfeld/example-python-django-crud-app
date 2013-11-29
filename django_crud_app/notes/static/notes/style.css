@@ -103,8 +103,11 @@ html, body {
 	line-height:28px;
 }
 
-.nav_buttons a:last-of-type {
+.nav_buttons input {
 	border-right:none;
+	position: relative;
+	left: 10px;
+	top: 8px;
 }
 
 /* Note Text */

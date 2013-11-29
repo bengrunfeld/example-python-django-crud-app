@@ -21,7 +21,7 @@
 
         <div class="main_container">
             {% if not deleted %}
-                <form action="/notes/" method="post">{% csrf_token %}
+                <form action="/notes/update/" method="post">{% csrf_token %}
             {% else %}
                 <form method="post" action="javascript:;">
             {% endif %}
@@ -50,7 +50,7 @@
                 <div class="nav_buttons">
                     <a href="{% url 'notes:create' %}">+</a>
                     <a href="{% if not deleted %}{% url 'notes:delete' note_id=target.id %}{% else %}javascript:;{% endif %}">–</a>
-                    <a href="{# url 'notes:update' note_id=target.id #}"><img src="{% static 'notes/savedisk.png' %}" alt="Save" title="save"></a>
+                    <input type="submit" value='' style="background:url({% static 'notes/savedisk.png' %}) no-repeat;">
                 </div>
 
             </section> <!-- notes_list -->
@@ -79,6 +79,10 @@
                                 {{ form.content.errors }}
                                 <label for="id_content"></label>
                                 {{ form.content }}
+                            </div>
+                            <div class="note_id">
+                                <label for="id_noteid"></label>
+                                <input type="hidden" name="noteid" value="{{ noteid }}">
                             </div>
                            </form>
                         {% endif %}

@@ -7,4 +7,5 @@ urlpatterns = patterns('',
 	url(r'^(?P<note_id>\d+)/$', views.read, name='read'),
 	url(r'^(?P<note_id>\d+)/delete/$', views.delete, name='delete'),
 	url(r'^create/$', views.create, name='create'),
+	url(r'^update/$', views.update, name='update'),
 )

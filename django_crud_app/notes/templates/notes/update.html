@@ -21,7 +21,7 @@
 
         <div class="main_container">
             {% if not deleted %}
-                <form action="/notes/update/" method="post">{% csrf_token %}
+                <form action="/notes/" method="post">{% csrf_token %}
             {% else %}
                 <form method="post" action="javascript:;">
             {% endif %}
@@ -40,7 +40,6 @@
                         {% for note in list_of_notes %}
                             <a href="{% url 'notes:read' note_id=note.id %}">
                                 <div class="note_selector {% if note.id == target.id %} selected {% endif %}">
-                                <p>ID: {{ note.id }}</p>
                                 <h2>{{ note.title }}</h2>
                                 <p>Last edited: {{ note.last_update_date }}</p>
                                 </div>
@@ -74,12 +73,12 @@
                             <div class="note_title">
                                 {{ form.title.errors }}
                                 <label for="id_title"></label>
-                                <input type="text" name="title" value="Write title here">
+                                {{ form.title }}
                             </div>
                             <div class="note_content">
                                 {{ form.content.errors }}
                                 <label for="id_content"></label>
-                                <textarea name="content" rows="30" cols="65">Write content here</textarea>
+                                {{ form.content }}
                             </div>
                             <div class="note_id">
                                 <label for="id_noteid"></label>
