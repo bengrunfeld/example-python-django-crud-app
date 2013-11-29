@@ -40,7 +40,6 @@
                         {% for note in list_of_notes %}
                             <a href="{% url 'notes:read' note_id=note.id %}">
                                 <div class="note_selector {% if note.id == target.id %} selected {% endif %}">
-                                <p>ID: {{ note.id }}</p>
                                 <h2>{{ note.title }}</h2>
                                 <p>Last edited: {{ note.last_update_date }}</p>
                                 </div>
