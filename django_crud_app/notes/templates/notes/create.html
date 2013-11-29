@@ -40,6 +40,7 @@
                         {% for note in list_of_notes %}
                             <a href="{% url 'notes:read' note_id=note.id %}">
                                 <div class="note_selector {% if note.id == target.id %} selected {% endif %}">
+                                <p>ID: {{ note.id }}</p>
                                 <h2>{{ note.title }}</h2>
                                 <p>Last edited: {{ note.last_update_date }}</p>
                                 </div>
@@ -49,7 +50,7 @@
                     
                 <div class="nav_buttons">
                     <a href="{% url 'notes:create' %}">+</a>
-                    <a href="{% if not deleted %}{% url 'notes:delete' note_id=target.id %}{% else %}javascript:;{% endif %}">–</a>
+                    <a href="{% if not deleted %}{# url 'notes:delete' note_id=target.id #}{% else %}javascript:;{% endif %}">–</a>
                     <a href="{# url 'notes:update' note_id=target.id #}"><img src="{% static 'notes/savedisk.png' %}" alt="Save" title="save"></a>
                 </div>
 
@@ -73,12 +74,12 @@
                             <div class="note_title">
                                 {{ form.title.errors }}
                                 <label for="id_title"></label>
-                                {{ form.title }}
+                                <input type="text" name="title" value="Write title here">
                             </div>
                             <div class="note_content">
                                 {{ form.content.errors }}
                                 <label for="id_content"></label>
-                                {{ form.content }}
+                                <textarea name="content" rows="30" cols="70">Write content here</textarea>
                             </div>
                            </form>
                         {% endif %}

@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.utils import timezone
+import datetime
+import time
 from django import forms
 
 from notes.models import Note
 
 class NotesForm(forms.Form):
     title = forms.CharField(max_length=150)
-    content = forms.CharField()
+    content = forms.CharField(widget=forms.Textarea(attrs={'rows':30, 'cols':65}))
 
 def index(request):
 	"""Lists all of the Notes in the Database"""
@@ -19,34 +22,19 @@ def index(request):
 			# Process the data in form.cleaned_data
 			return HttpResponseRedirect('/notes/') # Redirect after POST
 	else:
-		form = NotesForm()
-	print(form)
+		form = NotesForm(initial={'title': target.title, 'content': target.content})
 	context = {'list_of_notes': list_of_notes, 'target': target, 'form':form}
 	return render(request, template, context)
 
-# def create(request, note_title, note_content):
-# 	# """Creates a new note in the Database"""
-# 	# list_of_notes = Note.objects.all().order_by('-last_update_date')
-# 	# template = 'notes/base.html'
-# 	# newspace = True
-# 	pass
-
 def create(request):
-	template = 'notes/base.html'
+	template = 'notes/create.html'
 	list_of_notes = Note.objects.all().order_by('-last_update_date')
-	target = "1"
-	if request.method == 'POST':
-		form = NotesForm(request.POST)
-		if form.is_valid():
-			# Process the data in form.cleaned_data
-			return HttpResponseRedirect('/notes/') # Redirect after POST
-	else:
-		form = NotesForm()
-	print(form)
-	context = {'list_of_notes': list_of_notes, 'form':form, 'target':target}
+	if not list_of_notes[0].title == '':
+		note = Note(title='', content='')
+		note.save()
+	form = NotesForm()
+	context = {'list_of_notes': list_of_notes, 'form':form}
 	return render(request, template, context)
-	
-	
 
 
 def read(request, note_id):
@@ -57,9 +45,19 @@ def read(request, note_id):
 	context = {'list_of_notes': list_of_notes, 'target': target}
 	return render(request, template, context)
 
-def update(request, note_id):
+def update(request):
 	"""Updates a specific note in the Database"""
-	pass
+	template = 'notes/create.html'
+	list_of_notes = Note.objects.all().order_by('-last_update_date')
+	if request.method == 'POST':
+		form = NotesForm(request.POST)
+		if form.is_valid():
+
+			return HttpResponseRedirect('/notes/') # Redirect after POST	
+	else:
+		form = NotesForm()
+		context = {'list_of_notes': list_of_notes, 'form':form}
+		return render(request, template, context)	
 
 def delete(request, note_id):
 	"""Deletes a specific note from the Database"""
