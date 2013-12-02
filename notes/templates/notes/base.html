@@ -53,7 +53,7 @@
                     <div class="note_title">
                         {{ form.title.errors }}
                         <label for="id_title"></label>
-                        {% if not form.title %}
+                        {% if form.title %}
                             {{ form.title }}
                         {% else %}
                             <input type="text" name="title" value="Write title here">
@@ -62,7 +62,7 @@
                     <div class="note_content">
                         {{ form.content.errors }}
                         <label for="id_content"></label>
-                        {% if not form.content %}
+                        {% if form.content %}
                             {{ form.content }}
                         {% else %}
                             <textarea name="content" rows="30" cols="65">Write content here</textarea>
