@@ -60,7 +60,7 @@ def update(request):
 			note.title = title
 			note.content = content
 			note.save()
-			return HttpResponseRedirect('/notes/')
+			return HttpResponseRedirect('/')
 	else:
 		form = NotesForm()
 		context = {'list_of_notes': list_of_notes, 'form':form}

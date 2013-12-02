@@ -21,7 +21,7 @@
 
         <div class="main_container">
             {% if not deleted %}
-                <form action="/notes/update/" method="post">{% csrf_token %}
+                <form action="/update/" method="post">{% csrf_token %}
             {% else %}
                 <form method="post" action="javascript:;">
             {% endif %}
