@@ -27,25 +27,14 @@
             {% endif %}
 
             <section class="notes_list">
-                {% block empty %}
-                    {% if list_of_notes %}
-                        {% if newspace %}
-                            <a href="javascript:;">
-                                <div class="note_selector selected">
-                                    <h2>New note</h2>
-                                    <p>To be published now</p>
-                                </div>
-                            </a>
-                        {% endif %}
-                        {% for note in list_of_notes %}
-                            <a href="{% url 'notes:read' note_id=note.id %}">
-                                <div class="note_selector {% if note.id == target.id %} selected {% endif %}">
-                                <h2>{{ note.title }}</h2>
-                                <p>Last edited: {{ note.last_update_date }}</p>
-                                </div>
-                            </a>
-                        {% endfor %}
-                    {% endif %}
+                {% for note in list_of_notes %}
+                    <a href="{% url 'notes:read' note_id=note.id %}">
+                        <div class="note_selector {% if note.id == noteid %} selected {% endif %}">
+                        <h2>{{ note.title }}</h2>
+                        <p>Last edited: {{ note.last_update_date }}</p>
+                        </div>
+                    </a>
+                {% endfor %}
                     
                 <div class="nav_buttons">
                     <a href="{% url 'notes:create' %}">+</a>
@@ -56,43 +45,28 @@
             </section> <!-- notes_list -->
 
             <section class="note_text">
-                {% if list_of_notes %}
-                    {% if newspace %}
-                        <a href="javascript:;">
-                            <div class="note_selector selected">
-                                <h2>New note</h2>
-                                <p>To be published now</p>
-                            </div>
-                        </a>
-                    {% else %}
-                        {% if deleted %}
-                            <h1>Note: {{ tempid }} was deleted</h1>
-                            <p>Please enter a note</p>
-                        {% else %}
-                            {{ form.non_field_errors }}
-                            <div class="note_title">
-                                {{ form.title.errors }}
-                                <label for="id_title"></label>
-                                <input type="text" name="title" value="Write title here">
-                            </div>
-                            <div class="note_content">
-                                {{ form.content.errors }}
-                                <label for="id_content"></label>
-                                <textarea name="content" rows="30" cols="65">Write content here</textarea>
-                            </div>
-                            <div class="note_id">
-                                <label for="id_noteid"></label>
-                                <input type="hidden" name="noteid" value="{{ noteid }}">
-                            </div>
-                           </form>
-                        {% endif %}
-                    {% endif %}
-                {% else %}
-                    <h1>Please enter a title</h1>
+                {% if deleted %}
+                    <h1>Note: {{ tempid }} was deleted</h1>
                     <p>Please enter a note</p>
+                {% else %}
+                    {{ form.non_field_errors }}
+                    <div class="note_title">
+                        {{ form.title.errors }}
+                        <label for="id_title"></label>
+                        <input type="text" name="title" value="Write title here">
+                    </div>
+                    <div class="note_content">
+                        {{ form.content.errors }}
+                        <label for="id_content"></label>
+                        <textarea name="content" rows="30" cols="65">Write content here</textarea>
+                    </div>
+                    <div class="note_id">
+                        <label for="id_noteid"></label>
+                        <input type="hidden" name="noteid" value="{{ noteid }}">
+                    </div>
+                   </form>
                 {% endif %}
             </section>
-                {% endblock empty %}
             <div style="clear:both;"></div>
 
         </div> <!-- main_container -->

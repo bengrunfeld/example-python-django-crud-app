@@ -15,20 +15,35 @@ class NotesForm(forms.Form):
 def index(request):
 	"""Lists all of the Notes in the Database"""
 	list_of_notes = Note.objects.all().order_by('-last_update_date')
-	template = 'notes/base.html'
-	target = list_of_notes[0]
-	noteid = list_of_notes[0].id
-	form = NotesForm(initial={'title': target.title, 'content': target.content})
-	context = {'list_of_notes': list_of_notes, 'target': target, 'form':form, 'noteid': noteid}
-	return render(request, template, context)
+	print list_of_notes
+	if len(list_of_notes) == 0:
+		template = 'notes/create.html'
+		note = Note(title='', content='')
+		note.save()
+		form = NotesForm()
+		list_of_notes = Note.objects.all().order_by('-last_update_date')
+		noteid = list_of_notes[0].id
+		context = {'list_of_notes': list_of_notes, 'form':form, 'noteid': noteid}
+		return render(request, template, context)
+	else:
+		target = list_of_notes[0]
+		noteid = list_of_notes[0].id
+		template = 'notes/base.html'
+		form = NotesForm(initial={'title': target.title, 'content': target.content})
+		context = {'list_of_notes': list_of_notes, 'target': target, 'form':form, 'noteid': noteid}
+		return render(request, template, context)
 
 def create(request):
-	template = 'notes/create.html'
 	list_of_notes = Note.objects.all().order_by('-last_update_date')
-	if not list_of_notes[0].title == '':
+	template = 'notes/create.html'
+	if len(list_of_notes) == 0:
+		note = Note(title='', content='')
+		note.save()
+	elif not list_of_notes[0].title == '':
 		note = Note(title='', content='')
 		note.save()
 	form = NotesForm()
+	list_of_notes = Note.objects.all().order_by('-last_update_date')
 	noteid = list_of_notes[0].id
 	context = {'list_of_notes': list_of_notes, 'form':form, 'noteid': noteid}
 	return render(request, template, context)
@@ -52,7 +67,6 @@ def update(request):
 	if request.method == 'POST':
 		form = NotesForm(request.POST)
 		if form.is_valid():
-			print "WE HIT THE FORM!"
 			title = form.cleaned_data['title']
 			content = form.cleaned_data['content']
 			noteid = form.cleaned_data['noteid']
