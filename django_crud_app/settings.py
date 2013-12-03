@@ -63,8 +63,20 @@ WSGI_APPLICATION = 'django_crud_app.wsgi.application'
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config()
+import psycopg2
+
+DATABASES = {
+    'default': {
+        'ENGINE':'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ['NAME'],
+        'USER': os.environ['USER'],
+        'PASSWORD': os.environ['PASS'],
+        'HOST': os.environ['HOST'],
+        'PORT': os.environ['PORT'],
+    }
+}
+
+# DATABASES['default'] = dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
