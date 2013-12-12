@@ -68,7 +68,7 @@ Deis relies on a [Foreman](http://ddollar.github.com/foreman/) `Procfile` that l
 This tells Deis to run `web` workers using the command `gunicorn django_crud_app.wsgi`. You can test this locally by running `foreman start`.
 
 	(venv)$ foreman start
-	FORMAN SEEMS TO NOT WORK WITH A 3rd PART DATABASE (e.g. Amazon RDS)
+	
 
 You should now be able to access your application locally at <http://localhost:5000>.
 
@@ -76,6 +76,7 @@ You should now be able to access your application locally at <http://localhost:5
 
 Deis uses environment variables to manage your application's configuration, especially database configuration. For example, the following are used to connect your Django app to an Amazon RDS Instance.
 
+	DJ_ENGINE: postgresql_psycopg2
 	DJ_PASS: somepass
 	DJ_USER: someuser
 	DJ_HOST: id.somehost.us-west-2.rds.amazonaws.com
@@ -108,7 +109,7 @@ Use `git push deis master` to deploy your application.
 	-----> No runtime.txt provided; assuming python-2.7.4.
 	-----> Preparing Python runtime (python-2.7.4)
 
-Once your application has been deployed, use `deis open` to view it in a browser. To find out more info about your application, use `deis info`.
+Once your application has been deployed, use `` , and then use `deis open` to view it in a browser. To find out more info about your application, use `deis info`.
 
 ## Scale your Application
 
