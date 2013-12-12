@@ -134,7 +134,7 @@ To scale your application's [Docker](http://docker.io) containers, use `deis sca
 
 ## Configure your Application
 
-Deis applications are configured using environment variables. The example application includes a special `POWERED_BY` variable to help demonstrate how you would provide application-level configuration. 
+Deis applications are configured using environment variables. To connect to a 3rd-party database like Amazon RDS, you'll need to 
 
 	$ curl -s http://yourapp.yourformation.com
 	Powered by Deis
