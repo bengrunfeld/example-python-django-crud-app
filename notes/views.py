@@ -29,6 +29,10 @@ def index(request):
 		target = list_of_notes[0]
 		noteid = list_of_notes[0].id
 		template = 'notes/base.html'
+		if target.title == '':
+			target.title = 'Write title here'
+		if target.content == '':
+			target.content = 'Write content here'
 		form = NotesForm(initial={'title': target.title, 'content': target.content})
 		context = {'list_of_notes': list_of_notes, 'target': target, 'form':form, 'noteid': noteid}
 		return render(request, template, context)
@@ -56,6 +60,10 @@ def read(request, note_id):
 	note = Note.objects.get(id=note_id)
 	noteid = note.id
 	target = Note.objects.get(id=note_id)
+	if target.title == '':
+		target.title = 'Write title here'
+	if target.content == '':
+		target.content = 'Write content here'
 	form = NotesForm(initial={'title': target.title, 'content': target.content})
 	context = {'list_of_notes': list_of_notes, 'target': target, 'form': form, 'noteid': noteid}
 	return render(request, template, context)
